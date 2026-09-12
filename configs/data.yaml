@@ -1,0 +1,19 @@
+# Dataset configuration for YOLOv8
+# Đồ án 2 — Phân loại Phương tiện Giao thông
+
+# Đường dẫn dữ liệu
+path: ../data          # Thư mục gốc dataset
+train: train/images    # Thư mục ảnh huấn luyện (tương đối so với 'path')
+val: val/images        # Thư mục ảnh validation
+test: test/images      # Thư mục ảnh kiểm thử
+
+# Số lượng lớp
+nc: 5
+
+# Tên lớp phương tiện
+names:
+  0: car           # Ô tô con
+  1: motorcycle    # Xe máy
+  2: bus           # Xe buýt
+  3: truck         # Xe tải
+  4: bicycle       # Xe đạp
