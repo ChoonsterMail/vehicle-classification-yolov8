@@ -1,11 +1,11 @@
-# 🚗 Hệ thống Thị giác Máy tính Phân loại và Nhận diện Phương tiện Giao thông
+#  Hệ thống Thị giác Máy tính Phân loại và Nhận diện Phương tiện Giao thông
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://python.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-red.svg)](https://pytorch.org)
 [![YOLOv8](https://img.shields.io/badge/YOLOv8-Ultralytics-green.svg)](https://github.com/ultralytics/ultralytics)
 [![Streamlit](https://img.shields.io/badge/Streamlit-App-orange.svg)](https://streamlit.io)
 
-## 📋 Giới thiệu
+##  Giới thiệu
 
 Đồ án 2 — Khoa Công nghệ Thông tin, Trường Đại học Mỏ - Địa Chất.
 
@@ -19,7 +19,7 @@ Xây dựng hệ thống ứng dụng **Deep Learning** và **Computer Vision** 
 | 4 | Xe tải | `3` | truck |
 | 5 | Xe đạp | `4` | bicycle |
 
-## 🎯 Mục tiêu
+##  Mục tiêu
 
 ### Học thuật và nghiên cứu
 - Làm chủ toàn diện pipeline thị giác máy tính: Thu thập, gán nhãn dữ liệu chuẩn YOLO format, tăng cường ảnh (Data Augmentation), huấn luyện mô hình và tối ưu hóa suy luận.
@@ -32,7 +32,7 @@ Xây dựng hệ thống ứng dụng **Deep Learning** và **Computer Vision** 
 - Tích hợp thuật toán **ByteTrack** + vạch kẻ ảo đếm lưu lượng phương tiện qua từng làn đường.
 - Triển khai ứng dụng **Web Demo tương tác** bằng Streamlit.
 
-## 📁 Cấu trúc dự án
+##  Cấu trúc dự án
 
 ```
 Phân loại phương tiện giao thông/
@@ -79,63 +79,9 @@ Phân loại phương tiện giao thông/
     ├── train_mobilenet.py      # Huấn luyện MobileNetV3-Large & benchmark FPS
     ├── evaluate.py             # Đánh giá toàn diện (F1, Confusion Matrix, Report)
     └── utils/                  # Tiện ích dùng chung (VehicleDataset, Visualization)
-```
 
-## 🤝 Quy chế Phối hợp Nhóm trên GitHub
 
-Dự án áp dụng mô hình phân nhánh **Git Flow**, quy chuẩn **Conventional Commits** và quy trình **Code Review chéo** giữa 4 thành viên.
-
-- 📖 **Quy định chi tiết:** Vui lòng đọc kỹ [CONTRIBUTING.md](CONTRIBUTING.md) trước khi tạo nhánh làm việc.
-- 🛠️ **Cẩm nang thao tác Git từng bước:** Xem tài liệu [docs/HUONG_DAN_GIT_GITHUB.md](docs/HUONG_DAN_GIT_GITHUB.md).
-- 📋 **Phân công nhiệm vụ chi tiết:** Xem tài liệu [docs/phan_cong_nhiem_vu.md](docs/phan_cong_nhiem_vu.md).
-- 🏷️ **Quy chuẩn gán nhãn 5 lớp YOLO:** Xem tài liệu [docs/quy_chuan_gan_nhan.md](docs/quy_chuan_gan_nhan.md).
-
-## 🔧 Cài đặt
-
-### Yêu cầu hệ thống
-- Python 3.10+
-- CUDA 11.8+ (khuyến nghị cho GPU)
-- RAM ≥ 8GB
-
-### Cài đặt thư viện
-
-```bash
-# Clone repository
-git clone https://github.com/ChoonsterMail/vehicle-classification-yolov8.git
-cd vehicle-classification-yolov8
-
-# Tạo môi trường ảo
-python -m venv venv
-source venv/bin/activate   # Linux/Mac
-# venv\Scripts\activate    # Windows
-
-# Cài đặt thư viện
-pip install -r requirements.txt
-```
-
-## 🚀 Sử dụng
-
-### 1. Huấn luyện mô hình phân loại (Baseline)
-```bash
-python src/train_classifier.py --model resnet50 --epochs 50 --batch-size 32
-```
-
-### 2. Huấn luyện YOLOv8
-```bash
-python src/train_yolo.py --model yolov8n --data configs/data.yaml --epochs 100
-```
-
-### 3. Đánh giá mô hình
-```bash
-python src/evaluate.py --model models/detection/best.pt --data configs/data.yaml
-```
-
-### 4. Chạy Web Demo
-```bash
-streamlit run src/app.py
-```
-
-## 📊 Dữ liệu
+##  Dữ liệu
 
 | Tập dữ liệu | Nguồn | Số lượng |
 |-------------|-------|----------|
@@ -145,7 +91,7 @@ streamlit run src/app.py
 
 **Phân chia dữ liệu:** Train 70% / Val 20% / Test 10%
 
-## 📈 Kết quả dự kiến
+##  Kết quả dự kiến
 
 | Chỉ số | Mục tiêu |
 |--------|----------|
@@ -154,18 +100,18 @@ streamlit run src/app.py
 | FPS (GPU) | ≥ 30 |
 | FPS (CPU) | ≥ 10 |
 
-## 👥 Thành viên nhóm
+##  Thành viên nhóm
 
 | Thành viên | Vai trò chính |
 |-----------|--------------|
-| **Nguyễn Thành Đạt** | Trưởng nhóm — Quản lý dự án, thiết kế pipeline, đánh giá thực nghiệm |
+| **Nguyễn Thành Đạt** | Quản lý dự án, thiết kế pipeline, đánh giá thực nghiệm |
 | **Đỗ Xuân Bách** | Dữ liệu & Baseline — Khảo sát dataset, xây dựng mô hình phân loại cơ sở |
 | **Nguyễn Vũ Tùng** | Hạ tầng & Mô hình — Thiết lập môi trường, huấn luyện YOLOv8, tối ưu ONNX |
 | **Phạm Văn Tưởng** | Nghiên cứu & Báo cáo — Lý thuyết CNN/YOLO, EDA, viết báo cáo |
 
 **Giáo viên hướng dẫn:** Trần Thị Hòa
 
-## 📚 Tài liệu tham khảo
+##  Tài liệu tham khảo
 
 1. Nguyễn Thanh Thủy, *Giáo trình Trí tuệ nhân tạo và Thị giác máy tính*, NXB Bách khoa Hà Nội, 2020.
 2. Joseph Redmon et al., *You Only Look Once: Unified, Real-Time Object Detection*, IEEE CVPR, 2016.
@@ -173,6 +119,6 @@ streamlit run src/app.py
 4. Glenn Jocher et al., *Ultralytics YOLOv8*, 2023. https://github.com/ultralytics/ultralytics
 5. Yifu Zhang et al., *ByteTrack: Multi-Object Tracking by Associating Every Detection Box*, ECCV, 2022.
 
-## 📄 License
+##  License
 
 Dự án phục vụ mục đích học tập — Đồ án 2, Trường Đại học Mỏ - Địa Chất.
