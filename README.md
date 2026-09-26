@@ -36,44 +36,59 @@ Xây dựng hệ thống ứng dụng **Deep Learning** và **Computer Vision** 
 
 ```
 Phân loại phương tiện giao thông/
-├── README.md                   # Tài liệu dự án (file này)
+├── README.md                   # Tài liệu tổng quan dự án
+├── CONTRIBUTING.md             # Quy chuẩn làm việc nhóm & Git Flow (BẮT BUỘC ĐỌC)
 ├── requirements.txt            # Thư viện Python cần cài đặt
-├── .gitignore                  # Danh sách file/thư mục bỏ qua
+├── .gitignore                  # Danh sách file/thư mục loại trừ khỏi Git
+│
+├── .github/                    # Khung cấu hình GitHub Team Collaboration
+│   ├── PULL_REQUEST_TEMPLATE.md# Mẫu Pull Request chuẩn cho nhóm
+│   ├── ISSUE_TEMPLATE/         # Mẫu phân công task, báo lỗi, đề xuất tính năng
+│   └── workflows/              # GitHub Actions CI tự động kiểm tra cú pháp và tests
 │
 ├── configs/                    # File cấu hình
-│   └── data.yaml               # Cấu hình dataset cho YOLO
+│   └── data.yaml               # Cấu hình dataset 5 lớp cho YOLOv8
 │
 ├── data/                       # Dữ liệu (không push lên Git)
-│   ├── raw/                     # Ảnh/video gốc chưa xử lý
-│   ├── train/
-│   │   ├── images/              # Ảnh huấn luyện
-│   │   └── labels/              # Nhãn YOLO (.txt)
-│   ├── val/
-│   │   ├── images/              # Ảnh validation
-│   │   └── labels/              # Nhãn YOLO (.txt)
-│   └── test/
-│       ├── images/              # Ảnh kiểm thử
-│       └── labels/              # Nhãn YOLO (.txt)
+│   ├── raw/                    # Ảnh/video gốc chưa xử lý
+│   ├── train/ (images, labels) # Ảnh và nhãn huấn luyện
+│   ├── val/   (images, labels) # Ảnh và nhãn validation
+│   └── test/  (images, labels) # Ảnh và nhãn kiểm thử
 │
-├── docs/                       # Tài liệu
-│   ├── phan_cong_nhiem_vu.md    # Phân công nhiệm vụ nhóm
-│   └── quy_chuan_gan_nhan.md   # Quy chuẩn gán nhãn YOLO
+├── docs/                       # Tài liệu hướng dẫn & quy chuẩn
+│   ├── HUONG_DAN_GIT_GITHUB.md # Cẩm nang thực chiến Git & GitHub cho thành viên
+│   ├── phan_cong_nhiem_vu.md   # Phân công nhiệm vụ nhóm 10 tuần
+│   └── quy_chuan_gan_nhan.md  # Quy chuẩn gán nhãn YOLO format
 │
-├── models/                     # Mô hình đã huấn luyện
-│   ├── classification/          # Mô hình phân loại (ResNet, MobileNet)
-│   └── detection/               # Mô hình phát hiện (YOLOv8)
+├── models/                     # Checkpoint mô hình đã huấn luyện
+│   ├── classification/         # ResNet50, MobileNetV3-Large
+│   └── detection/              # YOLOv8n, YOLOv8s, YOLOv8m
 │
 ├── notebooks/                  # Jupyter Notebooks
-│   └── eda.ipynb                # Phân tích khám phá dữ liệu (EDA)
+│   ├── eda.ipynb               # Phân tích khám phá dữ liệu (EDA)
+│   └── training_visualization.ipynb # Trực quan hóa Loss, Accuracy và so sánh
 │
-└── src/                        # Mã nguồn chính
-    ├── data_preprocessing.py    # Tiền xử lý và tăng cường dữ liệu
-    ├── train_classifier.py      # Huấn luyện mô hình phân loại
-    ├── train_yolo.py            # Huấn luyện YOLOv8
-    ├── evaluate.py              # Đánh giá mô hình
-    ├── tracker.py               # ByteTrack theo dõi & đếm xe
-    └── app.py                   # Ứng dụng Web Streamlit
+├── results/                    # Kết quả đánh giá, Confusion Matrix, JSON Reports
+│
+└── src/                        # Mã nguồn chính của dự án
+    ├── split_dataset.py        # Phân chia Stratified Split 70:20:10
+    ├── augmentation.py         # Module tăng cường ảnh Albumentations
+    ├── preprocessing.py        # Tiền xử lý Letterboxing 640x640 và chuẩn hóa
+    ├── mosaic_mixup.py         # Thực nghiệm Mosaic & MixUp Augmentation
+    ├── train_classifier.py     # Huấn luyện Baseline ResNet50 (2 giai đoạn)
+    ├── train_mobilenet.py      # Huấn luyện MobileNetV3-Large & benchmark FPS
+    ├── evaluate.py             # Đánh giá toàn diện (F1, Confusion Matrix, Report)
+    └── utils/                  # Tiện ích dùng chung (VehicleDataset, Visualization)
 ```
+
+## 🤝 Quy chế Phối hợp Nhóm trên GitHub
+
+Dự án áp dụng mô hình phân nhánh **Git Flow**, quy chuẩn **Conventional Commits** và quy trình **Code Review chéo** giữa 4 thành viên.
+
+- 📖 **Quy định chi tiết:** Vui lòng đọc kỹ [CONTRIBUTING.md](CONTRIBUTING.md) trước khi tạo nhánh làm việc.
+- 🛠️ **Cẩm nang thao tác Git từng bước:** Xem tài liệu [docs/HUONG_DAN_GIT_GITHUB.md](docs/HUONG_DAN_GIT_GITHUB.md).
+- 📋 **Phân công nhiệm vụ chi tiết:** Xem tài liệu [docs/phan_cong_nhiem_vu.md](docs/phan_cong_nhiem_vu.md).
+- 🏷️ **Quy chuẩn gán nhãn 5 lớp YOLO:** Xem tài liệu [docs/quy_chuan_gan_nhan.md](docs/quy_chuan_gan_nhan.md).
 
 ## 🔧 Cài đặt
 
@@ -86,8 +101,8 @@ Phân loại phương tiện giao thông/
 
 ```bash
 # Clone repository
-git clone https://github.com/<username>/vehicle-classification.git
-cd vehicle-classification
+git clone https://github.com/ChoonsterMail/vehicle-classification-yolov8.git
+cd vehicle-classification-yolov8
 
 # Tạo môi trường ảo
 python -m venv venv
